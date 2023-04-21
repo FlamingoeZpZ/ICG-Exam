@@ -40,16 +40,16 @@ public class Bloom : MonoBehaviour
                 hideFlags = HideFlags.HideAndDontSave
             };
         }
-
-
-        int width = source.width / 2;
-        int height = source.height / 2;
-
-        RenderTextureFormat format = source.format;
-        RenderTexture currentDestination = textures[0] = RenderTexture.GetTemporary(width, height, 0, format);
-        RenderTexture currentSource = currentDestination;
+        
         if (_button.isOn)
         {
+            int width = source.width / 2;
+            int height = source.height / 2;
+
+            RenderTextureFormat format = source.format;
+            RenderTexture currentDestination = textures[0] = RenderTexture.GetTemporary(width, height, 0, format);
+            RenderTexture currentSource = currentDestination;
+            
             bloom.SetFloat(Threshold, threshold);
             bloom.SetFloat(Intensity, Mathf.GammaToLinearSpace(intensity));
             Graphics.Blit(source, currentDestination, bloom, BoxDownPrefilterPass);
@@ -83,12 +83,13 @@ public class Bloom : MonoBehaviour
 
             bloom.SetTexture(SourceTex, currentSource);
             Graphics.Blit(source, destination, bloom, ApplyBloomPass);
+            RenderTexture.ReleaseTemporary(currentSource);
         }
 
         else Graphics.Blit(source, destination);
 
 
 
-        RenderTexture.ReleaseTemporary(currentSource);
+       
     }
 }
