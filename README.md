@@ -44,6 +44,8 @@ Bloom is implemented with a toggle that allows you to see how it affects the lav
 Bloom works by taking the frame, and amplifying bright colors, specifically those with High Definition range *(Emissive properties). It creates the illusion of light by leeching color into the image and adds quite a bit of value into the scene
 I didn't really have time to think about how else to modify this, so I only really added a toggle... Not sure what you'd want to do to modify this anyways, unless it'd be like a layer based check or implementing light sources (which I def don't have time for)
 
+Idea for what could make bloom nice that I thought of at 2:50 -- It could toggle based on a trigger, entering the lava room could toggle the bloom and being outside would toggle it off. Saving GPU processing power and allowing for localized effects & intensities. I did not have time to implement it, but it'd literally just be a trigger and on trigger enter set true, on trigger exit set false. Ideally lerp into values.
+
 
 Modification: Toggle
 
